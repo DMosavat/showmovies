@@ -5,14 +5,14 @@ import {Route , Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //add sections components
-import Header from './components/sections/Header.js';
-import Footer from './components/sections/Footer';
+// import Header from './components/sections/header.js';
+import Footer from './components/sections/footer';
 
 //add pages components
 import Home from './components/pages/home';
-import About from './components/pages/about';
-import Favorites from './components/pages/favorites';
-import NoMatch from "./components/pages/noMatch";
+// import About from './components/pages/about';
+// import Favorites from './components/pages/favorites';
+// import NoMatch from "./components/pages/noMatch";
 
 class App extends Component{
   
@@ -21,15 +21,15 @@ class App extends Component{
         return(
             <div >
                           
-                <Header />
+                {/* <Header /> */}
                 
                <div >                
                    
                     <Switch>
                         <Route path="/" exact component={Home} />
-                        <Route path="/favorites"  component={Favorites} />
+                        {/* <Route path="/favorites"  component={Favorites} />
                         <Route path="/about"  component={About} />
-                        <Route component={NoMatch}/>
+                        <Route component={NoMatch}/> */}
                     </Switch>
                     
                 </div>
