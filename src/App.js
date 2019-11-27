@@ -5,7 +5,7 @@ import {Route , Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //add sections components
-// import Header from './components/sections/header.js';
+import Header from './components/sections/header';
 import Footer from './components/sections/footer';
 
 //add pages components
@@ -19,9 +19,9 @@ class App extends Component{
 
     render(){
         return(
-            <div >
+            <div  >
                           
-                {/* <Header /> */}
+                <Header />
                 
                <div >                
                    
