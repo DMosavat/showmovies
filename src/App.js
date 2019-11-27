@@ -5,11 +5,11 @@ import {Route , Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //add sections components
-import Header from './components/sections/header';
-import Footer from './components/sections/footer';
+import Header from './components/header';
+import Footer from './components/footer';
 
 //add pages components
-import Home from './components/pages/home';
+import Home from './routes/home';
 // import About from './components/pages/about';
 // import Favorites from './components/pages/favorites';
 // import NoMatch from "./components/pages/noMatch";
