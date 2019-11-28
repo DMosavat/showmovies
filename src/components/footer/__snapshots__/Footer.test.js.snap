@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer Test <Footer /> should render the form 1`] = `"<div class=\\"Footer\\"><div class=\\"modal-body\\"><div class=\\"row justify-content-md-center\\"><label class=\\"Footer-label\\">© 2019 Show Movies App</label></div></div></div>"`;

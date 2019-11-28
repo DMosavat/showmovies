@@ -5,8 +5,9 @@ import './MovieCard.css'
 
 function MovieCard(props){
     
+  
     let { movie, addToFavoriteList , removeFavFilm, favorites } = props
-
+  
     let found = favorites.find(element => element.id === movie.id);
     let fav = false
     if ( found ){

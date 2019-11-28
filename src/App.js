@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route , Switch } from 'react-router-dom';
+import { BrowserRouter, Route , Switch } from 'react-router-dom';
 
 //add bootstarpt styles file 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,12 +19,12 @@ class App extends Component{
             <div  >
                 
                <div >                
-                   
-                    <Switch>
-                        <Route path="/" exact component={Home} />
-                        <Route component={NoMatch}/>
-                    </Switch>
-                    
+                   <BrowserRouter>
+                        <Switch>
+                            <Route path="/" exact component={Home} />
+                            <Route component={NoMatch}/>
+                        </Switch>
+                    </BrowserRouter>
                 </div>
                
                 <Footer />             
