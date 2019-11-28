@@ -35,8 +35,5 @@ function MovieCard(props){
   
 }
 
-function checkFavFilmStatus(movie){
-  return(movie)
-}
 
 export default MovieCard;

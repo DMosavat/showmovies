@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import MovieCard from './../../components/MovieCard';
 import InfiniteScroll from 'react-infinite-scroller';
-import { Card } from 'react-bootstrap'
+
+import MovieCard from './../../components/MovieCard';
+import MovieSearch from './../../components/MovieSearch';
 import './Home.css'
 
 const apiKey = 'bf9a59578fcb278c84eca3877be1aed1'
@@ -117,40 +118,12 @@ class Home extends Component {
     return (
       <div className= 'Home' >
 
-        <div>
-          <Card>
-              <Card.Body>
-                <div className="row">
-                  
-                  <input 
-                    style={{ width:300, marginRight:10 }}
-                    type="text" 
-                    className={["form-control"]}
-                    placeholder="Search movie name ..."
-                    name="mName"
-                    value={this.state.mName}
-                    onChange={(e)=>this.Search(e)} />
-
-                    <div >
-                        <button className="btn btn-link" 
-                            onClick={(e)=>{e.preventDefault(); this.fetchMovieID(0) }}
-                        > New Film 
-                        </button>
-
-                        <button className="btn btn-link" 
-                            onClick={(e)=>{e.preventDefault(); this.fetchMovieID(1) }}
-                        > Top Film
-                        </button>
-
-                        <button className="btn btn-link" 
-                            onClick={(e)=>{e.preventDefault(); this.showFavoriteMovie() }}
-                        > Favorites
-                        </button>
-                    </div>
-                </div>
-              </Card.Body>
-          </Card>
-        </div>
+          <div>
+            <MovieSearch Search= {this.Search.bind(this)} 
+                         fetchMovieID= {this.fetchMovieID.bind(this)}
+                         showFavoriteMovie= {this.showFavoriteMovie.bind(this)} 
+                         mName= { this.state.mName }/>
+          </div>
           
           <div >
             <InfiniteScroll
@@ -161,12 +134,12 @@ class Home extends Component {
 
                     {!this.state.fav?
                     movies.map((movie , index) =>movie.id>0? 
-                    <MovieCard  movie={ movie } favorites={ favorites } fav={ this.state.fav } key={ index } 
+                    <MovieCard  movie={ movie } favorites={ favorites } key={ index } 
                                 addToFavoriteList={ this.addToFavoriteList.bind(this) }
                                 removeFavFilm={ this.removeFavFilm.bind(this) }/>:null)
                     :
                     favorites.map((movie , index) =>movie.id>0? 
-                    <MovieCard  movie={ movie } favorites={ favorites } fav={ this.state.fav } key={ index } 
+                    <MovieCard  movie={ movie } favorites={ favorites } key={ index } 
                                 addToFavoriteList={ this.addToFavoriteList.bind(this) }
                                 removeFavFilm={ this.removeFavFilm.bind(this) }/>:null)}
 
