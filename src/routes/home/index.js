@@ -14,7 +14,7 @@ class Home extends Component {
       movies: [],
       favorites: [],
       mName: '',
-      movieType: ''
+      fav: false
     }
   }
 
@@ -28,10 +28,8 @@ class Home extends Component {
 
     let url = ''
     if( showType === 0 ){
-      this.setState({ movieType: 'Top Film' })
        url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`
     }else if( showType === 1 ){
-      this.setState({ movieType: 'New Film' })
       url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`
 
     }else{
@@ -45,7 +43,7 @@ class Home extends Component {
 
   fetchApi(url) {
     
-    this.setState({ movies: []})
+    this.setState({ movies: [], fav: false})
 
     fetch(url).then((res) => res.json()).then((data) => {
       
@@ -84,17 +82,17 @@ class Home extends Component {
   }
 
   removeFavFilm(movieId){
-    this.setState(prevState => {
 
+    this.setState(prevState => {
       return {
-        movies : prevState.movies.filter(movies => movies.id !== movieId)
+        favorites : prevState.favorites.filter(favorites => favorites.id !== movieId),
       }
     })
   }
-  
+
   showFavoriteMovie(){
     this.setState({
-      movies : this.state.favorites
+       fav: true
     })
   }
 
@@ -113,9 +111,8 @@ class Home extends Component {
   }
 
   render() {
-    
-    //console.log(this.state.favorites)
-    const { movies } = this.state
+
+    const { movies, favorites } = this.state
 
     return (
       <div className= 'Home' >
@@ -136,11 +133,15 @@ class Home extends Component {
 
                     <div >
                         <button className="btn btn-link" 
-                            
-                            onClick={(e)=>{e.preventDefault()
-                            { this.state.movieType === 'Top Film' ?this.fetchMovieID(1):this.fetchMovieID(0)}}}
-                        > {this.state.movieType} 
+                            onClick={(e)=>{e.preventDefault(); this.fetchMovieID(0) }}
+                        > New Film 
                         </button>
+
+                        <button className="btn btn-link" 
+                            onClick={(e)=>{e.preventDefault(); this.fetchMovieID(1) }}
+                        > Top Film
+                        </button>
+
                         <button className="btn btn-link" 
                             onClick={(e)=>{e.preventDefault(); this.showFavoriteMovie() }}
                         > Favorites
@@ -157,10 +158,18 @@ class Home extends Component {
                     pageStart={0}
                     loader={<div className="loader">Loading ...</div>}
                 >
-                    {movies.map((movie , index) =>movie.id>0? 
-                    <MovieCard  movie={ movie } fav={ false } key={ index } 
+
+                    {!this.state.fav?
+                    movies.map((movie , index) =>movie.id>0? 
+                    <MovieCard  movie={ movie } fav={ this.state.fav } key={ index } 
+                                addToFavoriteList={ this.addToFavoriteList.bind(this) }
+                                removeFavFilm={ this.removeFavFilm.bind(this) }/>:null)
+                    :
+                    favorites.map((movie , index) =>movie.id>0? 
+                    <MovieCard  movie={ movie } fav={ this.state.fav } key={ index } 
                                 addToFavoriteList={ this.addToFavoriteList.bind(this) }
                                 removeFavFilm={ this.removeFavFilm.bind(this) }/>:null)}
+
             </InfiniteScroll>
             
           </div>
