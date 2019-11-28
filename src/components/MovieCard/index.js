@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card, ListGroupItem } from 'react-bootstrap'
 
+import './MovieCard.css'
+
 function MovieCard(props){
     
     let { movie, addToFavoriteList , removeFavFilm, favorites } = props
@@ -13,13 +15,13 @@ function MovieCard(props){
 
     return (
       
-      <Card style={{ width: '15rem', margin:5, backgroundColor:'#F2F2F2' }}>
+      <Card className= 'Card' >
         <Card.Img variant="top" src= { movie.poster_path } />
-        <Card.Body style={{ height: '12rem' }}>
-          <Card.Title style={{ fontSize:16}}>{movie.title}</Card.Title>
-          <Card.Text style={{ fontSize:14}}>Release Date: {movie.release_date}</Card.Text>
-          <Card.Text style={{ fontSize:14}}>Rate: {movie.vote_average}</Card.Text>
-          <Card.Text style={{ fontSize:14}}>Vote Count: {movie.vote_count}</Card.Text>
+        <Card.Body style={{ height: '11rem' }}>
+          <Card.Title className='Card-Title'>{movie.title}</Card.Title>
+          <Card.Text className= 'Card-Text' >Release Date: {movie.release_date}</Card.Text>
+          <Card.Text className= 'Card-Text' >Rate: {movie.vote_average}</Card.Text>
+          <Card.Text className= 'Card-Text' >Vote Count: {movie.vote_count}</Card.Text>
         </Card.Body>
         <ListGroupItem>
           {
