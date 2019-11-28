@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card } from 'react-bootstrap'
 
+import './MovieSearch.css'
+
 function MovieSearch(props){
     
    let { Search, fetchMovieID, showFavoriteMovie, mName } = props
@@ -9,11 +11,9 @@ function MovieSearch(props){
         <Card>
             <Card.Body>
             <div className="row">
-                
                 <input 
-                style={{ width:300, marginRight:10 }}
                 type="text" 
-                className={["form-control"]}
+                className={["MovieSearch-input"]}
                 placeholder="Search movie name ..."
                 name="mName"
                 value={mName}
