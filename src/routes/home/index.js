@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 
-import MovieCard from './../../components/MovieCard';
-import MovieSearch from './../../components/MovieSearch';
+import MovieCard from './../../components/movieCard';
+import MovieSearch from './../../components/movieSearch';
 import HomeM from './Home'
 import './Home.css'
 
