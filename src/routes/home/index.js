@@ -161,12 +161,12 @@ class Home extends Component {
 
                     {!this.state.fav?
                     movies.map((movie , index) =>movie.id>0? 
-                    <MovieCard  movie={ movie } fav={ this.state.fav } key={ index } 
+                    <MovieCard  movie={ movie } favorites={ favorites } fav={ this.state.fav } key={ index } 
                                 addToFavoriteList={ this.addToFavoriteList.bind(this) }
                                 removeFavFilm={ this.removeFavFilm.bind(this) }/>:null)
                     :
                     favorites.map((movie , index) =>movie.id>0? 
-                    <MovieCard  movie={ movie } fav={ this.state.fav } key={ index } 
+                    <MovieCard  movie={ movie } favorites={ favorites } fav={ this.state.fav } key={ index } 
                                 addToFavoriteList={ this.addToFavoriteList.bind(this) }
                                 removeFavFilm={ this.removeFavFilm.bind(this) }/>:null)}
 

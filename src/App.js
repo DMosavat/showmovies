@@ -5,14 +5,11 @@ import {Route , Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //add sections components
-import Header from './components/header';
 import Footer from './components/footer';
 
 //add pages components
 import Home from './routes/home';
-// import About from './components/pages/about';
-// import Favorites from './components/pages/favorites';
-// import NoMatch from "./components/pages/noMatch";
+import NoMatch from "./routes/noMatch";
 
 class App extends Component{
   
@@ -20,16 +17,12 @@ class App extends Component{
     render(){
         return(
             <div  >
-                          
-                <Header />
                 
                <div >                
                    
                     <Switch>
                         <Route path="/" exact component={Home} />
-                        {/* <Route path="/favorites"  component={Favorites} />
-                        <Route path="/about"  component={About} />
-                        <Route component={NoMatch}/> */}
+                        <Route component={NoMatch}/>
                     </Switch>
                     
                 </div>

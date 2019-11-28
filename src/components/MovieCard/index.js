@@ -1,9 +1,15 @@
 import React from 'react';
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Card, ListGroupItem } from 'react-bootstrap'
 
 function MovieCard(props){
     
-    let { movie, fav, addToFavoriteList , removeFavFilm } = props
+    let { movie, addToFavoriteList , removeFavFilm, favorites } = props
+
+    let found = favorites.find(element => element.id === movie.id);
+    let fav = false
+    if ( found ){
+      fav = true
+    }
 
     return (
       
@@ -18,8 +24,8 @@ function MovieCard(props){
         <ListGroupItem>
           {
             fav === false?
-            <button className="btn btn-link" style={{ fontSize:12}} onClick={()=> addToFavoriteList(movie) }>Add Favorite list</button>
-            :<button className="btn btn-link" style={{ fontSize:12}} onClick={()=> removeFavFilm(movie.id) }>Remove</button>
+            <button className="btn btn-link" style={{ fontSize:12}} onClick={()=> addToFavoriteList(movie) }>Add To Favorite list</button>
+            :<button className="btn btn-link" style={{ fontSize:12}} onClick={()=> removeFavFilm(movie.id) }>Remove from Favorite</button>
             
           }
         </ListGroupItem>
@@ -29,5 +35,8 @@ function MovieCard(props){
   
 }
 
+function checkFavFilmStatus(movie){
+  return(movie)
+}
 
 export default MovieCard;
