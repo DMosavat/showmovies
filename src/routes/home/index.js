@@ -122,7 +122,7 @@ class Home extends Component {
             }
 
             {!this.state.fav && !movies.length?
-                <h1 className= 'Home-noFav' />
+                <div className= 'Home-noFav' />
                 :null
             }
 
