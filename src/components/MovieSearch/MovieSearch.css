@@ -3,3 +3,12 @@
     width:300px;
     margin-right:10px
 }
+
+.MovieSearch-Card{
+    background-color: #2A2323
+}
+
+.MovieSearch-button{
+    color: #FFF;
+    font-size: 14px
+}

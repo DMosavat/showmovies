@@ -8,7 +8,7 @@ function MovieSearch(props){
    let { Search, fetchMovieID, showFavoriteMovie, mName } = props
 
    return(
-        <Card>
+        <Card className= 'MovieSearch-Card' >
             <Card.Body>
             <div className="row">
                 <input 
@@ -20,17 +20,17 @@ function MovieSearch(props){
                 onChange={(e)=>Search(e)} />
 
                 <div >
-                    <button className="btn btn-link" 
+                    <button className="btn btn-link MovieSearch-button" 
                         onClick={(e)=>{e.preventDefault(); fetchMovieID(0) }}
                     > New Film 
                     </button>
 
-                    <button className="btn btn-link" 
+                    <button className="btn btn-link MovieSearch-button" 
                         onClick={(e)=>{e.preventDefault(); fetchMovieID(1) }}
                     > Top Film
                     </button>
 
-                    <button className="btn btn-link" 
+                    <button className="btn btn-link MovieSearch-button" 
                         onClick={(e)=>{e.preventDefault(); showFavoriteMovie() }}
                     > Favorites
                     </button>

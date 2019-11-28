@@ -14,7 +14,7 @@ function MovieCard(props){
     }
 
     return (
-      
+
       <Card className= 'Card' >
         <Card.Img variant="top" src= { movie.poster_path } />
         <Card.Body style={{ height: '11rem' }}>

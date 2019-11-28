@@ -3,9 +3,9 @@ import InfiniteScroll from 'react-infinite-scroller';
 
 import MovieCard from './../../components/MovieCard';
 import MovieSearch from './../../components/MovieSearch';
+import HomeM from './Home'
 import './Home.css'
 
-const apiKey = 'bf9a59578fcb278c84eca3877be1aed1'
 
 class Home extends Component {
   constructor(props) {
@@ -20,56 +20,26 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.fetchMovieID()
+    this.fetchMovie()
 
   } 
   
 
-  fetchMovieID(showType=0) {
+  fetchMovie(showType=0) {
 
-    let url = ''
-    if( showType === 0 ){
-       url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`
-    }else if( showType === 1 ){
-      url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`
-
-    }else{
-      url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${this.state.mName}`
-
-    }
-
-    this.fetchApi(url)
-  }
-
-
-  fetchApi(url) {
-    
     this.setState({ movies: [], fav: false})
 
-    fetch(url).then((res) => res.json()).then((data) => {
-      
-        data.results.forEach(element => {
+    HomeM.fetchApi(showType, this.state.mName )
+    .then((movies) => {
 
-            if( element.vote_count > 0 ){
-              let movies = [ 
-                {
-                    id: element.id,
-                    title: element.title,
-                    release_date: element.release_date,
-                    vote_average: element.vote_average,
-                    vote_count: element.vote_count,
-                    poster_path: 'https://image.tmdb.org/t/p/w500' + element.poster_path
-                }
-              ]
-                  
-              this.setState(prevState => {
-                return {
-                  movies : [...prevState.movies , ...movies]
-                }
-              })
-            }
-        })
+      this.setState(prevState => {
+        return {
+          movies : [...prevState.movies , ...movies]
+        }
+      })
+
     })
+
   }
 
 
@@ -103,11 +73,10 @@ class Home extends Component {
       mName : event.target.value
     })
 
-
     if (this.state.mName.length >= 3)
-      this.fetchMovieID(2);
+      this.fetchMovie(2);
     else if ( this.state.mName.length === 2 )
-      this.fetchMovieID(0);
+      this.fetchMovie(0);
 
   }
 
@@ -120,7 +89,7 @@ class Home extends Component {
 
           <div>
             <MovieSearch Search= {this.Search.bind(this)} 
-                         fetchMovieID= {this.fetchMovieID.bind(this)}
+                         fetchMovieID= {this.fetchMovie.bind(this)}
                          showFavoriteMovie= {this.showFavoriteMovie.bind(this)} 
                          mName= { this.state.mName }/>
           </div>
@@ -129,22 +98,34 @@ class Home extends Component {
             <InfiniteScroll
                     className="row justify-content-md-center"
                     pageStart={0}
+                    loadMore= {()=>{}}
                     loader={<div className="loader">Loading ...</div>}
                 >
 
                     {!this.state.fav?
-                    movies.map((movie , index) =>movie.id>0? 
-                    <MovieCard  movie={ movie } favorites={ favorites } key={ index } 
-                                addToFavoriteList={ this.addToFavoriteList.bind(this) }
-                                removeFavFilm={ this.removeFavFilm.bind(this) }/>:null)
+                      movies.map((movie , index) => movie.id >0 ? 
+                      <MovieCard  movie={ movie } favorites={ favorites } key={ index } 
+                                  addToFavoriteList={ this.addToFavoriteList.bind(this) }
+                                  removeFavFilm={ this.removeFavFilm.bind(this) }/>:null)
                     :
-                    favorites.map((movie , index) =>movie.id>0? 
-                    <MovieCard  movie={ movie } favorites={ favorites } key={ index } 
-                                addToFavoriteList={ this.addToFavoriteList.bind(this) }
-                                removeFavFilm={ this.removeFavFilm.bind(this) }/>:null)}
+                      favorites.map((movie , index) => movie.id >0 ? 
+                      <MovieCard  movie={ movie } favorites={ favorites } key={ index } 
+                                  addToFavoriteList={ this.addToFavoriteList.bind(this) }
+                                  removeFavFilm={ this.removeFavFilm.bind(this) }/>:null)
+                    }
 
             </InfiniteScroll>
             
+            {this.state.fav && !favorites.length?
+                <h1 className= 'Home-noFav' >You have no movie in your favorites</h1>
+                :null
+            }
+
+            {!this.state.fav && !movies.length?
+                <h1 className= 'Home-noFav' />
+                :null
+            }
+
           </div>
 
       </div>
